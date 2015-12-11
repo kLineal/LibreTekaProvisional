@@ -2,12 +2,6 @@ class LibrosController < ApplicationController
 
 def index
 
-# mostramos dummy csv file
-
-#@data = Libro.read_from_csv
-#column = Libro.column_names
-#array = ["t","a","e","i"]
-
 @libros = Libro.all
 end
 
