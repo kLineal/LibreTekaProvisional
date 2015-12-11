@@ -1,0 +1,55 @@
+<body>
+
+<h1><center>El increible archivo de libros<center></h1> 
+
+<%= form_tag({controller: "libros", action: "create"}, method: "POST") do %>
+
+<%= submit_tag "Cargar archivos desde csv" %>
+<% end %>
+
+<% if @libros.empty? %>
+
+<h2><center> No hay nigun libro en la base de datos :-( <center></h2>
+
+<% else %>
+<br><br>
+<div id="destroy_all",style="right:2px;">
+  <%= button_to 'Destruir todos los libros', libros_path,
+                              method: :delete,
+                              data: { confirm: 'Estas seguro?' } %>
+ 
+  <br><br>
+</div>
+
+
+ 
+<table>
+  <tr>
+    <th></th>
+    <th>Titulo</th>
+    <th>Autor</th>
+    <th>Editorial</th>
+    <th>ISBN</th>
+  </tr>
+ 
+  <% i=1 %>
+  <% @libros.each do |libro| %>
+    <tr>
+      <td><%= i               %></td>
+      <td><%= libro.titulo    %></td>
+      <td><%= libro.autor     %></td>
+      <td><%= libro.editorial %></td>
+      <td><%= libro.isbn      %></td>
+      <td><%= link_to 'Destruir', libro_path(libro),
+                              method: :delete,
+                              data: { confirm: 'Estas seguro?' } %>
+      </td>
+     
+    </tr>
+  <% i=i+1 %>
+  <% end %>
+</table>
+
+<% end %>
+
+</body>
